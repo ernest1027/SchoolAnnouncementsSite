@@ -3,8 +3,8 @@ import {useState, useEffect} from "react";
 import db from "../firebase"
 import {CardData} from "../Interfaces/CardData";
 import AnnouncementCard from "../components/announcementCard";
+import './home.css'
 
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from "react-bootstrap/Button";
 
 function Home() {
@@ -25,15 +25,20 @@ function Home() {
 
     return (
         <div className="Home">
-            <Jumbotron className={"text-center"}>
-                <h1>Announcements Interface</h1>
-                <Button className="btn btn-primary" id="addAnnouncement">Add Announcements</Button>
-            </Jumbotron>
-            {announcements.map(
-                ({id, data})=>{
-                    return <AnnouncementCard key={id} id={id} data={data}></AnnouncementCard>
-                }
-            )}
+
+
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-12 mt-3" id="announcement-cards" >
+                        {announcements.map(
+                            ({id, data})=>{
+                                return <AnnouncementCard key={id} id={id} data={data}></AnnouncementCard>
+                            }
+                        )}
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 }
