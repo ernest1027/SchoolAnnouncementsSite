@@ -3,10 +3,17 @@ img{
 
 }
 
-button{
+.deleteButton{
     height:50px;
     width:80px;
     margin:25px;
+}
+
+.editButton{
+    height:50px;
+    width:80px;
+    margin:25px;
+    padding: 13px;
 }
 
 .card {

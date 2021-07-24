@@ -3,14 +3,14 @@ import "./card.css";
 import db from "../firebase";
 import Button from 'react-bootstrap/Button';
 import {CardData} from "../Interfaces/CardData";
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 
 
-function AnnouncementCard(props:CardData) {
+function AnnouncementCard(props:CardData&RouteComponentProps) {
 
     const editCard = () =>{
         window.location.href=`/edit.html?name=${props.id}`
     }
-
 
     const deleteCard = () => {
         db.collection("Announcements").doc(props.id).delete()
@@ -30,12 +30,12 @@ function AnnouncementCard(props:CardData) {
                 <a href="/view.html?name=${doc.id}">
                     <h4>{`${props.data.title}`}</h4>
                 </a>
-                <Button  className={`pull-right btn btn-success`} onClick={editCard}>Edit</Button>
-                <Button className={`pull-right btn btn-danger`} onClick={deleteCard}>Delete</Button>
+                <Link to={`/edit.html?name=${props.id}`} className={`pull-right btn btn-success editButton`}>Edit</Link>
+                <Button className={`pull-right btn btn-danger deleteButton`} onClick={deleteCard}>Delete</Button>
                 <p>{`${props.data.corp}`}</p>
             </div>
         </div>
     );
 }
 
-export default AnnouncementCard;
+export default withRouter(AnnouncementCard);
