@@ -2,7 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState, useEffect} from "react";
 import db from "../firebase"
 import {CardData} from "../Interfaces/CardData";
-import AnnouncementCard from "../components/announcementCard";
+import AnnouncementCard from "../components/announcementCard/announcementCard";
+import TitleCard from "../components/titleCard/titleCard";
 import './home.css'
 
 import Button from "react-bootstrap/Button";
@@ -25,20 +26,18 @@ function Home() {
 
     return (
         <div className="Home">
-
-
+            <TitleCard title="Announcements Interface" editButton={true} addAnnouncementButton={false} goBackButton={false}></TitleCard>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-12 mt-3" id="announcement-cards" >
+                    <div className="col-12 mt-3" id="announcement-cards">
                         {announcements.map(
-                            ({id, data})=>{
+                            ({id, data}) => {
                                 return <AnnouncementCard key={id} id={id} data={data}></AnnouncementCard>
                             }
                         )}
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }
